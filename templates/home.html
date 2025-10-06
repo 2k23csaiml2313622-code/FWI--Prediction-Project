@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <style>
+        body{
+            background-image: url("{{ url_for('static', filename='fiery.jpg') }}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        h1{
+            text-align: center;
+            color:black;
+            font-size: 55px;
+        }
+        form
+        {
+            font-size: 40px;
+            text-align: center;
+            color:black;
+            font-size: large;
+        }
+        h2{
+            text-align: center;
+            color: black;
+            font-size: 35px;
+        }
+        p{
+            text-align: center;
+            font-size: 35px;
+            font-weight: bolder;
+            color: black;
+            
+        }
+    </style>
+
+</head>
+<body>
+    <h1>FWI PREDICTION</h1>
+
+    <form action="{{ url_for('predict_datapoint') }}" method="post">
+        <input type="text" name="Temperature" placeholder="Temperature" required><br>
+        <input type="text" name="RH" placeholder="RH" required><br>
+        <input type="text" name="WS" placeholder="Wind Speed" required><br>
+        <input type="text" name="Rain" placeholder="Rain" required><br>
+        <input type="text" name="FFMC" placeholder="FFMC" required><br>
+        <input type="text" name="DMC" placeholder="DMC" required><br>
+        <input type="text" name="ISI" placeholder="ISI" required><br>
+        <input type="text" name="Classes" placeholder="Classes" required><br>
+        <input type="text" name="Region" placeholder="Region" required><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    <h2>Prediction Result</h2>
+    {% if results %}
+        <p>Predicted Value: {{ results }}</p>
+    {% else %}
+        <p>No prediction yet.</p>
+    {% endif %}
+</body>
+</html>
